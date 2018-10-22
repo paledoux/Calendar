@@ -1,0 +1,25 @@
+#calendar-container{
+    padding: 10px;
+    display: inline-block;
+    border:1px solid red;
+}
+
+#calendar-month-year{
+    border:1px solid yellow;
+    text-align: center;
+}
+
+#calendar-days{
+    margin-top: 5px;
+    border:1px solid blue;
+    text-align: center;
+}
+
+#calendar-month-year{
+    text-align: center;
+}
+
+#nextMonth{
+    cursor: pointer;
+
+}
