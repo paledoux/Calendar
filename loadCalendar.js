@@ -1,5 +1,5 @@
 var monthName = ["Janvier", "Février", "Mars", "Avril","Mai", "Juin", "Juillet", "Août", "Septembre", "Octobre", "Novembre","Décembre"];
-var dayName = ["Dimanche","Lundi","Mardi","Mercredi","Jeudi","Vendredi","Samedi"];
+var dayName = ["D","L","M","M","J","V","S"];
 var currentYear;
 var currentMonthNumber;
 
@@ -27,11 +27,12 @@ function createCalendar(d){
 function createTable(day_no,lastDateOfMonth){
     var table = document.createElement('table');
     var tr = document.createElement('tr');
-
+    var testPal = "Contenue"
     //Creation name days row
     for(var c=0; c<= 6; c++){
         var td = document.createElement('td');
         td.innerHTML = dayName[c];
+        td.setAttribute("id", "nameCells");
         tr.appendChild(td);
     }
     table.appendChild(tr);
@@ -54,8 +55,10 @@ function createTable(day_no,lastDateOfMonth){
     var count = 1;
     for(; c<= 6; c++){
         var td = document.createElement('td');
-        td.innerHTML = count;
+        td.innerHTML = '<div id = "numberDayCell">' + count +  '</div>' + '<div id = "contentCell">' + testPal +'</div>';
         count++;
+        td.setAttribute("type", "button");
+        td.setAttribute("id", "dayCells");
         tr.appendChild(td);
     }
     table.appendChild(tr);
@@ -70,7 +73,9 @@ function createTable(day_no,lastDateOfMonth){
                 return table;
             }
             var td = document.createElement('td');
-            td.innerHTML = count;
+            td.setAttribute("type", "button");
+            td.setAttribute("id", "dayCells");
+            td.innerHTML = '<div id = "numberDayCell">' + count +  '</div>' + '<div id = "contentCell">' + testPal +'</div>';
             count++
             tr.appendChild(td);
         }

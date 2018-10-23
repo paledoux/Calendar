@@ -2,24 +2,58 @@
     padding: 10px;
     display: inline-block;
     border:1px solid red;
+    margin: auto;
 }
 
 #calendar-month-year{
     border:1px solid yellow;
     text-align: center;
+    font-size: 28px;
+    font-weight: bold;
 }
 
 #calendar-days{
     margin-top: 5px;
     border:1px solid blue;
     text-align: center;
+    font-size: 24px;
 }
 
 #calendar-month-year{
     text-align: center;
 }
 
-#nextMonth{
+.buttonMonth{
     cursor: pointer;
+}
 
+td{
+    width: 100px;
+    height: 100px;
+    
+}
+#dayCells{
+    cursor: pointer;
+    border: 1px solid black;
+    
+}
+#nameCells{
+    font-style: italic;
+}
+
+#numberDayCell{
+    vertical-align: top;
+    text-align: left;
+    position: relative;
+    color: red;
+}
+
+#contentCell{
+    color: blue;
+    vertical-align: bottom;
+    text-align: center;
+}
+
+table{
+    border-spacing: 2px;
 }
