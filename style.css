@@ -1,6 +1,24 @@
+body{
+    width: 70%;
+    margin: auto;
+}
+
+table{
+    margin: auto;
+}
+
+.mainHeader nav ul{
+    list-style-type: none;
+    text-align: center;
+}
+
+.mainHeader nav ul li{
+    display: inline;
+    cursor: pointer;
+}
+
 #calendar-container{
     padding: 10px;
-    display: inline-block;
     border:1px solid red;
     margin: auto;
 }
@@ -19,32 +37,22 @@
     font-size: 24px;
 }
 
-#calendar-month-year{
-    text-align: center;
-}
-
 .buttonMonth{
     cursor: pointer;
 }
 
-td{
-    width: 100px;
-    height: 100px;
-    
-}
 #dayCells{
     cursor: pointer;
-    border: 1px solid black;
-    
+    border: 1px solid black; 
 }
-#nameCells{
-    font-style: italic;
+
+#emptyCells{
+    /*background-color: #D3D3D3;*/
 }
 
 #numberDayCell{
     vertical-align: top;
     text-align: left;
-    position: relative;
     color: red;
 }
 
@@ -54,6 +62,3 @@ td{
     text-align: center;
 }
 
-table{
-    border-spacing: 2px;
-}

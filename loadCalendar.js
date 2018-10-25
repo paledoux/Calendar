@@ -27,7 +27,7 @@ function createCalendar(d){
 function createTable(day_no,lastDateOfMonth){
     var table = document.createElement('table');
     var tr = document.createElement('tr');
-    var testPal = "Contenue"
+    var cellContent = "Contenue   "
     //Creation name days row
     for(var c=0; c<= 6; c++){
         var td = document.createElement('td');
@@ -46,6 +46,7 @@ function createTable(day_no,lastDateOfMonth){
         }
         var td = document.createElement('td');
         td.innerHTML = "";
+        td.setAttribute("id", "emptyCells");
         tr.appendChild(td);
     }
     table.appendChild(tr);
@@ -55,7 +56,7 @@ function createTable(day_no,lastDateOfMonth){
     var count = 1;
     for(; c<= 6; c++){
         var td = document.createElement('td');
-        td.innerHTML = '<div id = "numberDayCell">' + count +  '</div>' + '<div id = "contentCell">' + testPal +'</div>';
+        td.innerHTML = '<div id = "numberDayCell">' + count +  '</div>' + '<div id = "contentCell">' + cellContent +'</div>';
         count++;
         td.setAttribute("type", "button");
         td.setAttribute("id", "dayCells");
@@ -75,7 +76,7 @@ function createTable(day_no,lastDateOfMonth){
             var td = document.createElement('td');
             td.setAttribute("type", "button");
             td.setAttribute("id", "dayCells");
-            td.innerHTML = '<div id = "numberDayCell">' + count +  '</div>' + '<div id = "contentCell">' + testPal +'</div>';
+            td.innerHTML = '<div id = "numberDayCell">' + count +  '</div>' + '<div id = "contentCell">' + cellContent +'</div>';
             count++
             tr.appendChild(td);
         }
@@ -89,14 +90,7 @@ function resetCalendar(){
     document.getElementById("calendar-days").innerHTML = "";
 };
 
-/*var nextMonthButton = document.getElementById("nextMonth");
-var previousMonthButton = document.getElementById("previousMonth");
-nextMonthButton.addEventListener('click', function(){
-    var monthPlusOne = currentMonthNumber + 1;
-    var d = new Date(currentYear, monthPlusOne, 1);
-    resetCalendar();
-    createCalendar(d);
-});*/
+
 var nextMonthButton = document.getElementById("nextMonth");
 var previousMonthButton = document.getElementById("previousMonth");
 nextMonthButton.addEventListener('click', changeMonth ,false);
