@@ -8,11 +8,11 @@ function Calendar(){
     };
 
     this.createCalendar = function(d){
-        var firstDay = new Date(d.getFullYear(), d.getMonth(), 1);
+        let firstDay = new Date(d.getFullYear(), d.getMonth(), 1);
         this.day_no = firstDay.getDay();
-        var lastDayOfMonth = new Date(d.getFullYear(), d.getMonth()+1, 0);
+        let lastDayOfMonth = new Date(d.getFullYear(), d.getMonth()+1, 0);
         this.lastDateOfMonth = lastDayOfMonth.getDate();
-        var currentMonth = this.monthName[d.getMonth()];
+        let currentMonth = this.monthName[d.getMonth()];
         currentData.currentYear = d.getFullYear();
         currentData.currentMonthNumber = d.getMonth();
         var currentDay = this.dayName[d.getDay()];
@@ -84,7 +84,6 @@ function Calendar(){
     this.nextMonth = function(){
         this.monthPlusOne = currentData.currentMonthNumber + 1;
         let d = new Date(currentData.currentYear, this.monthPlusOne, 1);
-        alert(d);
         this.resetCalendar();
         this.createCalendar(d);
     }
@@ -96,15 +95,21 @@ function Calendar(){
         this.createCalendar(d);
     }
 
-    this.resetCalendar = function(){
+    /*this.resetCalendar = function(){
         document.getElementById("calendar-month").innerHTML = "";
         document.getElementById("calendar-year").innerHTML = "";
         document.getElementById("calendar-days").innerHTML = "";
-    }
+    }*/
 
     document.getElementById("nextMonth").addEventListener('click', this.nextMonth ,false);
     document.getElementById("previousMonth").addEventListener('click', this.previousMonth ,false);
 
+}
+
+Calendar.prototype.resetCalendar = function(){
+    document.getElementById("calendar-month").innerHTML = "";
+    document.getElementById("calendar-year").innerHTML = "";
+    document.getElementById("calendar-days").innerHTML = "";
 }
 
 
