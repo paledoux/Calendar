@@ -26,7 +26,7 @@ function Calendar(){
     this.createTable = function(){
         let table = document.createElement('table');
         let tr = document.createElement('tr');
-        var cellContent = "Contenue"
+        var cellContent = "Contenue </br> Contenue </br> Contenue </br> Contenue"
         //Creation name days row
         for(var c=0; c<= 6; c++){
             var td = document.createElement('td');
