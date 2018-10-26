@@ -5,6 +5,7 @@ body{
 
 table{
     margin: auto;
+    width: 100%;
 }
 
 .mainHeader nav ul{
