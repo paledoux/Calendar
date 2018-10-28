@@ -1,0 +1,130 @@
+body{
+    font: 15px/1.5 Arial,Helvetica,sans-serif;
+    padding: 0px;
+    margin: 0px;
+    background-color: #f4f4f4;
+}
+
+.container{
+    width: 80%;
+    margin: auto;
+    overflow: hidden;
+}
+
+/* Login */
+form{
+    text-align: center;
+    padding-top: 10px;
+}
+
+form input{
+    margin: 5px;
+}
+
+form input[type="submit"], input[type="text"], input[type="password"]{
+    width: 300px;
+    height: 30px;
+}
+form input[type="submit"]{
+   background-color: #2ecc71;
+   border: none;
+   color: white;
+   font-weight: bold;
+}
+form input[type="submit"]:hover{
+    cursor: pointer;
+    color: #e8491d;
+ }
+
+/* Header */
+header{
+    background: #35424a;
+    color: #FFFFFF;
+    padding-top: 20px;
+    min-height: 40px;
+    border-bottom: #e8491d 3px solid;
+    text-align: center;
+}
+
+header a{
+    color: #FFFFFF;
+    text-decoration: none;
+    font-size: 16px;
+}
+
+header a:hover{
+    color: #e8491d;
+    font-weight: bold;
+}
+
+header ul{
+    margin: 0px;
+    padding: 0px;
+}
+
+header li{
+    display: inline;
+    padding: 0 20px 0 20px;
+}
+
+/* Calendar */
+table{
+    margin: auto;
+    width: 100%;
+}
+
+#calendar-month-year{
+    text-align: center;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    font-weight: bold;
+}
+
+#nameCells{
+    text-align: center;
+    text-decoration: underline;
+    font-weight: bold;
+}
+
+#dayCells{
+    border: 1px solid black;
+}
+
+#numberDayCell{
+    vertical-align: top;
+    text-align: left;
+    font-weight: bold;
+}
+
+#numberDayCellToday{
+    vertical-align: top;
+    text-align: left;
+    font-weight: bold;
+    text-decoration: underline;
+    color: #e8491d;
+}
+
+#contentCell{
+    vertical-align: bottom;
+    text-align: center;
+}
+
+@media only screen and (max-width: 768px) {
+    .container{
+        width: 100%;
+        margin: auto;
+        overflow: hidden;
+    }
+
+    #nameCells{
+        text-align: center;
+        text-decoration: underline;
+        font-weight: bold;
+        font-size: 12px;
+    }
+
+    #dayCells{
+        border: 1px solid black;
+        font-size: 10px;
+    }
+}
