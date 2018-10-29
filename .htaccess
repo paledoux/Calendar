@@ -1,0 +1,19 @@
+RewriteEngine On
+
+#we replace domain.com/$1 with %{SERVER_NAME}%{REQUEST_URI}.
+
+RewriteCond %{HTTP_HOST} !^www\. [NC]
+
+RewriteRule ^(.*) https://www.%{SERVER_NAME}%{REQUEST_URI} [L,R=301]
+
+
+
+#here we dont use www as non www was already redirected to www.
+
+RewriteCond %{HTTPS} off
+
+RewriteRule ^(.*) https://%{SERVER_NAME}%{REQUEST_URI} [L,R=301]
+
+DirectoryIndex index.php
+
+Options -Indexes

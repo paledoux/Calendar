@@ -35,7 +35,7 @@ function Calendar(){
         let table = document.createElement('table');
         let tr = document.createElement('tr');
         var cellContent = "Contenue </br> Contenue </br> Contenue </br> Contenue";
-      
+        this.concatDate = "";
         //Creation name days row
         for(var c=0; c<= 6; c++){
             var td = document.createElement('td');
@@ -62,6 +62,9 @@ function Calendar(){
         //Creation number Date row
         var count = 1;
         for(; c<= 6; c++){
+            var selfMonthPusOne = self.currentMonthNumber + 1;
+            this.concatDate = self.currentYear + "-" + selfMonthPusOne + "-" + count;
+            this.rtvRdvEmp(this.concatDate);
             var td = document.createElement('td');
             if (self.currentYear == self.NowFullYear && self.currentMonthNumber == self.NowMonth && self.currentDate == self.NowDate && val == 1){
                 if (count == self.NowDate){
@@ -85,6 +88,10 @@ function Calendar(){
         for(var r=3; r<= 7; r++){
             tr = document.createElement('tr');
             for(var c=0; c<= 6; c++){
+                var selfMonthPusOne = self.currentMonthNumber + 1;
+                this.concatDate = self.currentYear + "-" + selfMonthPusOne + "-" + count;
+                var testPAL = this.rtvRdvEmp(this.concatDate);
+                console.log(testPAL);
                 if(count>this.lastDateOfMonth){
                     table.appendChild(tr);
                     return table;
@@ -124,6 +131,29 @@ function Calendar(){
         self.currentDate = self.NowDate;
         self.resetCalendar();
         self.createCalendar(d,0);
+    }
+
+    this.rtvRdvEmp = function(dateRdv){
+        const xhr = new XMLHttpRequest();
+        var vars = "dateRdv="+dateRdv;
+        var stringConcat ="";
+        xhr.open("POST", "Script/PHP/rtvRdvEmp.php", true);
+        xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+        xhr.onreadystatechange = function() {
+            if(xhr.readyState == 4 && xhr.status == 200) {
+                var obj = JSON.parse(xhr.responseText);
+                if (obj.data.length > 0){
+                    for (var i = 0; i < obj.data.length; i++) {
+                        let prenom = obj.data[i].prenom;
+                        let nom = obj.data[i].nom;
+                        let abreviation = obj.data[i].abreviation;
+                        stringConcat = stringConcat + "<a>" + prenom + " " + nom + " " + abreviation + "</a>" + "</br>";
+                    }
+                    console.log(stringConcat);
+                }            
+            }
+        }
+        xhr.send(vars); 
     }
 
 }

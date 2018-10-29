@@ -6,11 +6,11 @@
         $passWord = $_POST['passWord'];
 
         if (empty($email) || empty($passWord)){
-            header("Location: ../../login.html?error=emptyfields&email=".$email);
+            header("Location: ../../loginForm.php?error=emptyfields&email=".$email);
             exit();
         }
         else if (!filter_var($email, FILTER_VALIDATE_EMAIL)){
-            header("Location: ../../login.html?error=invalidemail");
+            header("Location: ../../loginForm.php?error=invalidemail");
             exit();
         }
         else{
@@ -18,7 +18,7 @@
             $sql = "SELECT `idEmp`,`password` FROM `user` where `email` = ?";
             $stmt = mysqli_stmt_init($conn);
             if(!mysqli_stmt_prepare($stmt, $sql)){
-                header("Location: ../../login.html?error=sqlerror");
+                header("Location: ../../loginForm.php?error=sqlerror");
                 exit();
             }
             else{
@@ -28,14 +28,22 @@
                 mysqli_stmt_bind_result($stmt, $idEmp, $userPassword);
                 while (mysqli_stmt_fetch($stmt)) {
                     if (password_verify($passWord, $userPassword)) {
-                        echo "Match";
+                        session_start();
+                        $_SESSION['idEmp'] = $idEmp;
+                        header("Location: ../../calendar.php");
+                        exit();
                     }
                     else{
-                        header("Location: ../../login.html?error=invalidpassword");
+                        header("Location: ../../loginForm.php?error=invalidpassword");
                         exit();
                     }
                 }  
             }
         }
+        mysqli_stmt_close($stmt);
+        mysqli_close($conn);
+    }else{
+        header("Location: ../../loginForm.php");
+        exit(); 
     }
 ?>

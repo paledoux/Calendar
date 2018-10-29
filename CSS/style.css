@@ -31,6 +31,13 @@ form input[type="submit"]{
    color: white;
    font-weight: bold;
 }
+form #logout{
+    background-color: #e02828;
+}
+form #logout:hover{
+    cursor: pointer;
+    color: #000000;
+}
 form input[type="submit"]:hover{
     cursor: pointer;
     color: #e8491d;

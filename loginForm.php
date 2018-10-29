@@ -1,3 +1,12 @@
+<?php
+    session_start();
+
+    if(!empty($_SESSION['idEmp'])){
+        header("Location: /calendar.php");
+        exit();
+    }
+?>
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -15,9 +24,9 @@
             <header>
                 <nav>
                     <ul>
-                        <li><a href="index.html">Home</a></li>
-                        <li><a href="index.html">Home</a></li>
-                        <li><a href="index.html">Home</a></li>
+                        <!--<li><a href="index.php">Home</a></li>
+                        <li><a href="index.php">Home</a></li>
+                        <li><a href="index.php">Home</a></li>-->
                     </ul>
                 </nav>    
             </header>
