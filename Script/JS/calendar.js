@@ -28,14 +28,21 @@ function Calendar(){
         document.getElementById("calendar-year").innerHTML = self.currentYear;
         let calendarTable = this.createTable(this.day_no,this.lastDateOfMonth,val);
         document.getElementById("calendar-days").appendChild(calendarTable);
+        var selfMonthPusOne = self.currentMonthNumber + 1;
+        if  (selfMonthPusOne <= 9){
+            selfMonthPusOne = "0" + selfMonthPusOne
+        }
+        else{
+            selfMonthPusOne = String(selfMonthPusOne);
+        }
+        self.rtvRdvEmp(String(this.lastDateOfMonth),selfMonthPusOne, String(self.currentYear));
         val = 1;
     }
     
     this.createTable = function(val){
         let table = document.createElement('table');
         let tr = document.createElement('tr');
-        var cellContent = "Contenue </br> Contenue </br> Contenue </br> Contenue";
-        this.concatDate = "";
+
         //Creation name days row
         for(var c=0; c<= 6; c++){
             var td = document.createElement('td');
@@ -61,23 +68,30 @@ function Calendar(){
 
         //Creation number Date row
         var count = 1;
+        var dayPad = 1;
         for(; c<= 6; c++){
             var selfMonthPusOne = self.currentMonthNumber + 1;
-            this.concatDate = self.currentYear + "-" + selfMonthPusOne + "-" + count;
-            this.rtvRdvEmp(this.concatDate);
+            if (count <= 9){
+                dayPad = "0" + count;
+            }
+            else{
+                dayPad = String(count);
+            }
+            this.concatDate = self.currentYear + "-" + selfMonthPusOne + "-" + dayPad;
             var td = document.createElement('td');
             if (self.currentYear == self.NowFullYear && self.currentMonthNumber == self.NowMonth && self.currentDate == self.NowDate && val == 1){
                 if (count == self.NowDate){
-                    td.innerHTML = '<div id = "numberDayCellToday" >' + count +  '</div>' + '<div id = "contentCell">' + cellContent +'</div>';
+                    td.innerHTML = '<div id = "numberDayCellToday" >' + count +  '</div>' + '<div class = "contentCell" id = "contentCell' + this.concatDate + '"></div>';
                 }
                 else{
-                    td.innerHTML = '<div id = "numberDayCell">' + count +  '</div>' + '<div id = "contentCell">' + cellContent +'</div>';
+                    td.innerHTML = '<div id = "numberDayCell">' + count +  '</div>' + '<div class = "contentCell" id = "contentCell' + this.concatDate + '"></div>';
                 }
             }
             else{
-                td.innerHTML = '<div id = "numberDayCell">' + count +  '</div>' + '<div id = "contentCell">' + cellContent +'</div>';
+                td.innerHTML = '<div id = "numberDayCell">' + count +  '</div>' + '<div class = "contentCell" id = "contentCell' + this.concatDate + '"></div>';
             }
             count++;
+            dayPad++;
             //td.setAttribute("type", "button");
             td.setAttribute("id", "dayCells");
             tr.appendChild(td);
@@ -89,9 +103,13 @@ function Calendar(){
             tr = document.createElement('tr');
             for(var c=0; c<= 6; c++){
                 var selfMonthPusOne = self.currentMonthNumber + 1;
-                this.concatDate = self.currentYear + "-" + selfMonthPusOne + "-" + count;
-                var testPAL = this.rtvRdvEmp(this.concatDate);
-                console.log(testPAL);
+                if (count <= 9){
+                    dayPad = "0" + count;
+                }
+                else{
+                    dayPad = String(count);
+                }
+                this.concatDate = self.currentYear + "-" + selfMonthPusOne + "-" + dayPad;
                 if(count>this.lastDateOfMonth){
                     table.appendChild(tr);
                     return table;
@@ -101,16 +119,17 @@ function Calendar(){
                 td.setAttribute("id", "dayCells");
                 if (self.currentYear == self.NowFullYear && self.currentMonthNumber == self.NowMonth && self.currentDate == self.NowDate && val == 1){
                     if (count == self.NowDate){
-                        td.innerHTML = '<div id = "numberDayCellToday" >' + count +  '</div>' + '<div id = "contentCell">' + cellContent +'</div>';
+                        td.innerHTML = '<div id = "numberDayCellToday" >' + count +  '</div>' + '<div class = "contentCell" id = "contentCell' + this.concatDate + '"></div>';
                     }
                     else{
-                        td.innerHTML = '<div id = "numberDayCell">' + count +  '</div>' + '<div id = "contentCell">' + cellContent +'</div>';
+                        td.innerHTML = '<div id = "numberDayCell">' + count +  '</div>' + '<div class = "contentCell" id = "contentCell' + this.concatDate + '"></div>';
                     }
                 }
                 else{
-                    td.innerHTML = '<div id = "numberDayCell">' + count +  '</div>' + '<div id = "contentCell">' + cellContent +'</div>';
+                    td.innerHTML = '<div id = "numberDayCell">' + count +  '</div>' + '<div class = "contentCell" id = "contentCell' + this.concatDate + '"></div>';
                 }
-                count++
+                count++;
+                dayPad++;
                 tr.appendChild(td);
             }
             table.appendChild(tr);
@@ -133,27 +152,35 @@ function Calendar(){
         self.createCalendar(d,0);
     }
 
-    this.rtvRdvEmp = function(dateRdv){
+    this.rtvRdvEmp = function(lastDay, month, year){
         const xhr = new XMLHttpRequest();
-        var vars = "dateRdv="+dateRdv;
         var stringConcat ="";
         xhr.open("POST", "Script/PHP/rtvRdvEmp.php", true);
         xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
         xhr.onreadystatechange = function() {
             if(xhr.readyState == 4 && xhr.status == 200) {
                 var obj = JSON.parse(xhr.responseText);
-                if (obj.data.length > 0){
-                    for (var i = 0; i < obj.data.length; i++) {
-                        let prenom = obj.data[i].prenom;
-                        let nom = obj.data[i].nom;
-                        let abreviation = obj.data[i].abreviation;
-                        stringConcat = stringConcat + "<a>" + prenom + " " + nom + " " + abreviation + "</a>" + "</br>";
+                const rdvArray = Object.keys(obj).map(i => obj[i]);
+                if (rdvArray.length > 0){
+                    var o = 0 ;
+                    var dateRdv = "";
+                    for (;o < rdvArray.length; o++) { 
+                        for (var i = 0 ;i < rdvArray[o].length; i++) { 
+                            dateRdv = rdvArray[o][i].dateRdv;
+                            let prenom = rdvArray[o][i].prenom;
+                            let nom = rdvArray[o][i].nom;
+                            let abreviation = rdvArray[o][i].abreviation;
+                            stringConcat = stringConcat + "<a><span id = 'cellContentName'>" + prenom + " " + nom + "</span></br><span id = 'cellContentLocation'>" + abreviation + "</span></a>";
+                                   
+                        }
+                        var testtest = document.getElementById("contentCell"+dateRdv);
+                        document.getElementById("contentCell"+dateRdv).innerHTML = stringConcat;
+                        stringConcat = "";
                     }
-                    console.log(stringConcat);
-                }            
-            }
+                }
+            }              
         }
-        xhr.send(vars); 
+        xhr.send('lastDay='+lastDay+'&month='+month+'&year='+ year); 
     }
 
 }

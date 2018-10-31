@@ -28,9 +28,10 @@
                         <li><a href="loginForm.php">Login</a></li>
                         <li><a href="index.php">Home</a></li>-->
                     </ul>
-                </nav>    
+                </nav> 
+                
             </header>
-            <main>
+            
                 <div id = calendar-container>
                     <div id="calendar-month-year">
                         <button class = "buttonMonth" id = "previousMonth"><</button>
@@ -46,7 +47,6 @@
                 <form action="Script/PHP/logout.php" method="post">
                     <input id="logout" type="submit" name="submit" value="Déconnexion">
                 </form>
-            </main>
         </div>
     </body>
     <script src="/Script/JS/calendar.js"></script>

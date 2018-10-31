@@ -76,15 +76,22 @@ header li{
 
 /* Calendar */
 table{
-    margin: auto;
+    table-layout:fixed;
+    width:100%;
+
+}
+#calendar-container{
     width: 100%;
 }
-
 #calendar-month-year{
+    width: 100%;
     text-align: center;
     padding-top: 5px;
     padding-bottom: 5px;
     font-weight: bold;
+}
+#calendar-days{
+    width: 100%;
 }
 
 #nameCells{
@@ -94,7 +101,8 @@ table{
 }
 
 #dayCells{
-    border: 1px solid black;
+    /*border: 1px solid black;*/
+    border: none;
 }
 
 #numberDayCell{
@@ -111,9 +119,34 @@ table{
     color: #e8491d;
 }
 
-#contentCell{
+.contentCell{
     vertical-align: bottom;
     text-align: center;
+}
+
+.contentCell a{
+    display:inline-block;
+    text-align: center;
+    width: 100%;
+    margin-bottom: 1px;
+    border: 1px solid #e8491d;
+}
+#cellContentName{
+    text-align: left;
+    float: left;
+    width: 99%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: clip;
+}
+
+#cellContentLocation{
+    text-align: left;
+    float: left;
+    width: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: clip;
 }
 
 @media only screen and (max-width: 768px) {
@@ -131,7 +164,7 @@ table{
     }
 
     #dayCells{
-        border: 1px solid black;
+        border: none;
         font-size: 10px;
     }
 }
