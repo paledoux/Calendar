@@ -79,7 +79,7 @@ function Calendar(){
             }
             this.concatDate = self.currentYear + "-" + selfMonthPusOne + "-" + dayPad;
             var td = document.createElement('td');
-            if (self.currentYear == self.NowFullYear && self.currentMonthNumber == self.NowMonth && self.currentDate == self.NowDate && val == 1){
+            if (self.currentYear == self.NowFullYear && self.currentMonthNumber == self.NowMonth && self.currentDate == self.NowDate /*&& val == 1*/){
                 if (count == self.NowDate){
                     td.innerHTML = '<div id = "numberDayCellToday" >' + count +  '</div>' + '<div class = "contentCell" id = "contentCell' + this.concatDate + '"></div>';
                 }
@@ -117,7 +117,7 @@ function Calendar(){
                 var td = document.createElement('td');
                 //td.setAttribute("type", "button");
                 td.setAttribute("id", "dayCells");
-                if (self.currentYear == self.NowFullYear && self.currentMonthNumber == self.NowMonth && self.currentDate == self.NowDate && val == 1){
+                if (self.currentYear == self.NowFullYear && self.currentMonthNumber == self.NowMonth && self.currentDate == self.NowDate /*&& val == 1*/){
                     if (count == self.NowDate){
                         td.innerHTML = '<div id = "numberDayCellToday" >' + count +  '</div>' + '<div class = "contentCell" id = "contentCell' + this.concatDate + '"></div>';
                     }

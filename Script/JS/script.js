@@ -1,5 +1,5 @@
 let calendar = new Calendar();
-var d = new Date();
+let d = new Date();
 calendar.createCalendar(d,1);
 
 

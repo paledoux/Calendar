@@ -50,5 +50,6 @@
         </div>
     </body>
     <script src="/Script/JS/calendar.js"></script>
+    <script src="/Script/JS/calendar2.js"></script>
     <script src="/Script/JS/script.js"></script>
 </html>
