@@ -1,7 +1,7 @@
 <?php
     $serverName = "localhost";
-    $dbUserName = "paled629_user";
-    $dbPassWord = "Onl!neUs3";
+    $dbUserName = "";
+    $dbPassWord = "";
     $dbName = "paled629_Calendar";
 
     $conn = mysqli_connect($serverName, $dbUserName, $dbPassWord, $dbName);
